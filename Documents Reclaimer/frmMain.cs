@@ -87,6 +87,12 @@ namespace Documents_Reclaimer
                 //Hide junction
                 File.SetAttributes(_OriginalDirectory, File.GetAttributes(_OriginalDirectory) | FileAttributes.Hidden | FileAttributes.System);
 
+                //Create restore file and hide it
+                var recovery_file = txtDirectory.Text + @"\.original_directory";
+                File.WriteAllText(recovery_file, _OriginalDirectory);
+                File.SetAttributes(recovery_file, FileAttributes.Hidden);
+
+
             }
         }
 
