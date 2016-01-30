@@ -19,7 +19,9 @@ namespace Documents_Reclaimer
         {
             pbFolderIcon.Image = Win32.GetFolderIcon(_OriginalDirectory, IconSize.Large, FolderType.Open).ToBitmap();
             txtDirectory.Text = _OriginalDirectory;
-
+            //Enable restore if ".original_directory" found
+            btnRestore.Enabled = File.Exists(_OriginalDirectory + @"\.original_directory");
+            btnMove.Enabled = !btnRestore.Enabled;
         }
 
         private void btnFindTarget_Click(object sender, EventArgs e)
@@ -57,7 +59,8 @@ namespace Documents_Reclaimer
                 }
                 catch (OperationCanceledException)
                 {
-                    //do nothing                   
+                    //do nothing       
+                    return;            
                 }
                 catch (Exception ex)
                 {
@@ -85,7 +88,7 @@ namespace Documents_Reclaimer
                 }
 
                 //Hide junction
-                File.SetAttributes(_OriginalDirectory, File.GetAttributes(_OriginalDirectory) | FileAttributes.Hidden | FileAttributes.System);
+                File.SetAttributes(_OriginalDirectory, File.GetAttributes(_OriginalDirectory) | FileAttributes.Hidden/* | FileAttributes.System*/);
 
                 //Create restore file and hide it
                 var recovery_file = txtDirectory.Text + @"\.original_directory";

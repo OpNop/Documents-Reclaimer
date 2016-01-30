@@ -79,6 +79,7 @@
             // 
             // btnMove
             // 
+            this.btnMove.Enabled = false;
             this.btnMove.Location = new System.Drawing.Point(150, 161);
             this.btnMove.Name = "btnMove";
             this.btnMove.Size = new System.Drawing.Size(91, 23);
