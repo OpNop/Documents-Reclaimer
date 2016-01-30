@@ -68,6 +68,7 @@
             // 
             // btnRestore
             // 
+            this.btnRestore.Enabled = false;
             this.btnRestore.Location = new System.Drawing.Point(53, 161);
             this.btnRestore.Name = "btnRestore";
             this.btnRestore.Size = new System.Drawing.Size(91, 23);
@@ -143,7 +144,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.Text = "Reclaim this Folder";
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbFolderIcon)).EndInit();
             this.ResumeLayout(false);

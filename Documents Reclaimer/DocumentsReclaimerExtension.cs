@@ -13,14 +13,6 @@ namespace Documents_Reclaimer
     public class Documents_Reclaimer_Extension : SharpContextMenu
     {
 
-        [DllImport("kernel32.dll")]
-        static extern bool CreateSymbolicLink(string lpSymlinkFileName, string lpTargetFileName, SymbolicLink dwFlags);
-        enum SymbolicLink
-        {
-            File = 0,
-            Directory = 1
-        }
-
         protected override bool CanShowMenu()
         {
             return true;
@@ -28,13 +20,22 @@ namespace Documents_Reclaimer
 
         protected override ContextMenuStrip CreateMenu()
         {
-            var menu = new ContextMenuStrip();
+            var contextMenu = new ContextMenuStrip();
+            var mnuFolderReclaimer = new ToolStripMenuItem { Text = "Folder Reclaimer" };
             var itemMoveAndHideFolder = new ToolStripMenuItem { Text = "Move && Hide Folder" };
+            var itemHideFolder = new ToolStripMenuItem { Text = "Hide Folder" };
 
             itemMoveAndHideFolder.Click += (sender, args) => MoveAndHide();
-            menu.Items.Add(itemMoveAndHideFolder);
+            itemHideFolder.Click += (sender, args) => HideFolder();
+            mnuFolderReclaimer.DropDownItems.AddRange(new ToolStripItem[] { itemMoveAndHideFolder, itemHideFolder });
+            contextMenu.Items.Add(mnuFolderReclaimer);
 
-            return menu;
+            return contextMenu;
+        }
+
+        private void HideFolder()
+        {
+            return;
         }
 
         private void MoveAndHide()
